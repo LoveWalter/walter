@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>I am Walter</title>
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <link rel="stylesheet" href="../stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="../javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="../stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+</head>
+<body>
+
+<div class="wrapper">
+
+    <section>
+        <div id="title">
+            <h1>Android 四大控件 </h1>
+            <hr>
+            <span class="credits left">Project maintained by <a
+                    href="https://github.com/LoveWalter">LoveWalter</a></span>
+            <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a
+                    href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+        <p>开发Android的人都知道Android的四大控件是什么，Activity，Service,Broadcast,Content Provider</p>
+        <ul>
+            <li>
+                <p>1.先说Activity，因为它是Android的呈现给用户的界面，让用户实现人机交互的界面，因此，它常与xml文件相关联
+                    。在开发中，必须对Android的生命周期有很深刻的理解，比如从创建到销毁，比如程序什么状态下，走哪个函数，是十分重要的。
+                </p>
+
+                <p>onCreate 函数：当Activity被创建的时候，会走这个函数，在里边会setContentView添加xml布局文件，一般还会需要加载数据initData()，初始化控件信息
+                    initView();如果需要动态加载广播接收器，也可以在这里对其进行定义和注册；将这些信息封装到一个函数里，使代码更简洁，更具有可读性和可维护性。
+                </p>
+
+                <p>onStart()函数，当Activity创建完成后，这个函数就是将初始化后的数据，加载到Activity中。</p>
+
+                <p>
+                    onResume()函数：是在Activity创建完成之后，显示出界面,唯一需要注意的是：这个函数里的操作尽可能的时间短，因为这个函数的执行时间是很短的。
+                </p>
+                <p>
+                    经过以上三个函数，Activity就会呈献给用户可操作的界面.....
+                </p>
+                <p>
+                    onPause()函数，这个函数是当Activity跳转到其他界面的时候，或者不可见的时候，程序会优先调用这个函数，如果是动态注册的广播接收器，可以在这里对该广播注销。
+                </p>
+                <p>
+                    onStop()函数，如果当前Activity不在可见状态的时候，即为停止状态，也可以在这里对广播进行注销
+                    比如使用者调用了其他的程序，比如跳转到其他界面，打开照相机，等等。
+                </p>
+                <p>
+                   onRestart()函数，如果Activity不可见之后，重新返回前台，程序会调用这个函数，重新调用onStart方法，重新返回前台。
+                </p>
+                <p>
+                    onDestory()函数，当程序调用finish，或者被强制杀死，退出程序栈的时候，会调用这个函数。
+                </p>
+            </li>
+        </ul>
+    </section>
+
+</div>
+<!--[if !IE]>
+<script>fixScale(document);</script><![endif]-->
+
+</body>
+</html>
