@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Buggggggs</title>
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <link rel="stylesheet" href="../stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="../javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="../stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+</head>
+<body>
+
+<div class="wrapper">
+
+    <section>
+        <div id="title">
+            <h1>Android之这些年遇到的bugs</h1>
+
+            <p>发现问题->快速定位->分析问题->提供解决方案->修复Bug</p>
+            <hr>
+            <span class="credits left">Project maintained by <a
+                    href="https://github.com/LoveWalter">LoveWalter</a></span>
+            <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a
+                    href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <ul>
+
+            <li>
+                <h2>
+                    <div>第一个调皮的bug</div>
+                </h2>
+                <h5>
+                    <p>
+                        在做公司一个项目的时候，有次换了个测试帐号登录了Android客户端，可是在联系人界面中显示昵称时，有一条显示为null，而且
+                        还有一条头像居然是默认的头像！因为在程序中用到Picasso（一个很好用的第三方图片加载与缓存库），在错误显示的时候，默认加载
+                        预设头像。这让我很不明白，因为在添加测试帐号的时候，所有的联系人，群组全都有头像，而且昵称也是按照美国客户那边的称呼
+                        ，怎么可能会有呢。测试发现了、那就调吧、调试。。。几十条联系人呢啊！！如果用Log在获取数据的时候，for循环里打印，那得看到什么时候。。
+                        于是想着，用数据库吧、一条语句，多方便，还能快速定位先在模拟器上运行程序，登录刚才的帐号，通过adb shell，
+                        打开数据库、查找昵称为空的、居然没有。。。select avatar from _user;然后一个一个看，找到了，确实有一个null，既然不会空，
+                        又有null，那就是字符串“null”，好坑啊，怎么会有这么坑的bug！用同样的方法，找到头像为默认的那个帐号，和他的头像地址，放到
+                        网页里一看、呵呵哒，还真是默认头像。我想说，再有项目，关于名称的，要先把null，给注册了、只有自己知道。。多浪费时间啊。
+                    </p>
+                </h5>
+            </li>
+
+            <li>
+                <h2>
+                    <div>第二个，关于Android客户端性能问题</div>
+                </h2>
+                <h5>
+                    <p>
+                        关于客户端性能问题，我遇到的有三个个方面:
+                    </p>
+                    <ul>
+                        <li>
+                            <p>
+                                第一个：异步获取数据的时候
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                第二个：加载本地数据的时候
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                第三个：加载系统头像的时候
+                            </p>
+                        </li>
+                    </ul>
+                </h5>
+            </li>
+            <li>
+                <h2>
+                    <div>第三个RadioButton右上角未读条数</div>
+                </h2>
+                <h5>
+                    <p>
+                        客户说:我得知道哪个机构，给我发了消息，哪条是我未读的条数，类似扣扣那样的，咱们加上吧。
+                    </p>
+
+                    <p>
+                        经理说：加！....
+                    </p>
+
+                    <p>
+                        那就加吧、查阅了资料，这个好实现，Github上有大神写了个BadgeView，就是在Radiobutton上覆盖一层
+                        Button，透明的，然后需要哪个RadioButton显示数字，就把对应的Button的Visiable设为View.Visiable，其他设为Gone，
+                        然后在代码里查找数据库未读条数，传指，然后OK、
+                    </p>
+                </h5>
+            </li>
+
+
+            <li>
+                <h2>
+                    <div>第四个icon未读条数</div>
+                </h2>
+                <h5>
+                    <p>
+                        客户说：你看、IOS接收消息，图标上可以显示个未读条数啊、Andorid咱们加上吧。
+                    </p>
+
+                    <p>
+                        经理说：加！....
+                    </p>
+
+                    <p>
+                        那就加吧、查阅了资料
+                    </p>
+                </h5>
+            </li>
+
+            <li>
+                <h2>
+                    <div>第五个推送（最后改变了解决方案）</div>
+                </h2>
+                <h5>
+                    <p>
+                        客户说：你看、iOS这个退出后台了，也可以接收到消息啊，Android的为什么不能
+                    </p>
+                </h5>
+            </li>
+
+        </ul>
+        </h3>
+    </section>
+
+</div>
+<!--[if !IE]>
+<script>fixScale(document);</script><![endif]-->
+
+</body>
+</html>
